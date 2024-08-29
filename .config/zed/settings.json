@@ -1,0 +1,87 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+{
+  "autosave": "on_focus_change",
+  "buffer_font_family": "FiraMono Nerd Font",
+  "buffer_font_size": 16,
+  "extend_comment_on_newline": false,
+  "format_on_save": "on",
+  "languages": {
+    "Python": {
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "code_actions": {
+            "source.organizeImports.ruff": true,
+            "source.fixAll.ruff": true
+          }
+        },
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ]
+    }
+  },
+  "lsp": {
+    "ruff": {
+      "initialization_options": {
+        "settings": {
+          "lineLength": 80,
+          "lint": {
+            "extendSelect": ["I"]
+          }
+        }
+      }
+    }
+  },
+  "project_panel": {
+    "auto_fold_dirs": true,
+    "auto_reveal_entries": true,
+    "button": true,
+    "file_icons": true,
+    "folder_icons": true,
+    "git_status": true,
+    "scrollbar": {
+      "show": "always"
+    }
+  },
+  "tabs": {
+    "close_position": "right",
+    "file_icons": true,
+    "git_status": true
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "terminal": {
+    "alternate_scroll": "off",
+    "blinking": "terminal_controlled",
+    "button": true,
+    "copy_on_select": true,
+    "detect_venv": {
+      "on": {
+        "activate_script": "fish"
+      }
+    },
+    "env": {},
+    "option_as_meta": false,
+    "shell": {
+      "program": "/usr/bin/fish"
+    },
+    "toolbar": {
+      "title": true
+    },
+    "working_directory": "current_project_directory"
+  },
+  "theme": "Catppuccin Mocha",
+  "ui_font_size": 16
+}

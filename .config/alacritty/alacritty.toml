@@ -1,0 +1,22 @@
+import = [
+    # "~/.config/alacritty/catppuccin-latte.toml"
+    "~/.config/alacritty/catppuccin-mocha.toml",
+]
+
+[shell]
+args = ["-l", "-c", "tmux attach; or tmux new-session -n ''"]
+program = "/usr/bin/fish"
+
+[window]
+dynamic_title = true
+opacity = 0.9
+
+[window.padding]
+x = 10
+y = 10
+
+[font]
+normal = { family = "FiraMono Nerd Font", style = "Regular" }
+
+[env]
+TERM = "xterm-256color"
