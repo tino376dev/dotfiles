@@ -34,7 +34,7 @@ if not test  -d "$HOME/.config/micro/colorschemes"
 end
 
 # install gui tools for workstation environment
-if not test -f /.dockerenv
+if test -z $DISTTAG
 
     # install alacritty
     sudo dnf -y install alacritty
@@ -49,5 +49,9 @@ if not test -f /.dockerenv
     if not test -d "$HOME/.local/zed.app"
            curl -f "https://zed.dev/install.sh" | sh
     end
+
+    # configure git
+    git config --global user.name (read -P "git config name: ")
+    git config --global user.email (read -P "git config name: ")
 
 end

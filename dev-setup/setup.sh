@@ -24,10 +24,3 @@ if test -f /etc/fedora-release
 
 end
 
-# configure git for workstation environment
-if not test -f /.dockerenv
-
-    git config --global user.name (read -P "git config name: ")
-    git config --global user.email (read -P "git config name: ")
-
-end
