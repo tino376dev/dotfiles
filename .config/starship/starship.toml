@@ -2,12 +2,9 @@
 palette = "catppuccin_mocha"
 add_newline = true
 format = """
-$azure\
-$gcloud\
-$kubernetes\
-${custom.git}\
 $container\
-${custom.host}\
+${custom.fish}\
+${custom.nu}\
 $python\
 $directory\
 $git_branch\
@@ -17,14 +14,6 @@ $git_status\
 $character
 """
 
-[azure]
-symbol = '󰠅  '
-format = '''
-[$symbol$subscription \(($username)\)]($style)
-'''
-style = 'dimmed bold green'
-disabled = true
-
 [character]
 success_symbol = '[](bold green) '
 error_symbol = '[](bold red) '
@@ -32,24 +21,16 @@ error_symbol = '[](bold red) '
 [container]
 symbol = ' '
 format = '[$symbol]($style) '
-style = 'bold green'
+style = 'bold blue'
 
 [directory]
 format = '[$path]($style)[$read_only]($read_only_style) '
-style = 'bold green'
-
-[gcloud]
-symbol = '󱇶 ' 
-format = '''
-[$symbol $project \($account(@$domain)(\($region\))\)]($style) 
-'''
-style = 'dimmed bold green'
-disabled = true
+style = 'bold yellow'
 
 [git_branch]
 symbol = ''
-format = '[on $symbol$branch(:$remote_branch)]($style) '
-style = 'bold purple'
+format = '| [$symbol$branch(:$remote_branch)]($style) '
+style = 'bold blue'
 
 [git_commit]
 format = '[$hash$tag]($style) '
@@ -57,114 +38,27 @@ commit_hash_length = 6
 only_detached = false
 tag_disabled = false
 disabled = false
-style = 'bold purple'
+style = 'bold yellow'
 
 [git_status]
 format = '[\[$all_status$ahead_behind\]]($style) '
-style = 'bold purple'
-
-[helm]
-format = '[$symbol]($style) '
-detect_extensions = []
-detect_folders = ['helm']
-disabled = false
-
-[kubernetes]
-symbol = '󱃾  '
-format = '''
-[$symbol$context (\($namespace\))]($style)
-'''
-style = 'dimmed bold green'
-disabled = true
+style = 'bold blue'
 
 [python]
 format = '[(\($virtualenv\) )]($style)'
 style = 'bold purple'
 
-[custom.docker]
-command = ''
-symbol = '󰡨'
-style = 'yellow bold'
-detect_files = ['Dockerfile']
-format = '[$symbol]($style) '
-
-[custom.folder]
-when  = 'ls -d */'
-symbol = ''
-style = 'yellow bold'
-format = '[$symbol]($style) '
-
-[custom.git]
-command = 'git config --get remote.origin.url'
-when = true
-require_repo = true
-symbol = ''
-format = '''
-[$symbol  ($output)]($style) 
-'''
-style = 'dimmed bold green'
-
-[custom.host]
+[custom.fish]
 symbol = ''
 when = 'if test -f /.dockerenv; return 1; end'
 format = '[$symbol]($style)  '
-style = 'bold green'
+style = 'bold blue'
 
-[custom.json]
-command = ''
-symbol = ''
-style = 'yellow bold'
-detect_extensions = ['json']
-format = '[$symbol]($style) '
-
-[custom.python]
-command = ''
-symbol = ''
-style = 'yellow bold'
-detect_files = ['requirements.txt']
-detect_extensions = ['py','ipynb']
-format = '[$symbol]($style) '
-
-[custom.shell]
-command = ''
-symbol = ''
-style = 'yellow bold'
-detect_extensions = ['sh']
-format = '[$symbol]($style) '
-
-[custom.text]
-command = ''
-symbol = '󰦨'
-style = 'yellow bold'
-detect_extensions = ['txt']
-format = '[$symbol]($style) '
-
-[custom.toml]
-command = ''
-symbol = ''
-style = 'yellow bold'
-detect_extensions = ['toml']
-format = '[$symbol]($style) '
-
-[custom.yaml]
-command = ''
-symbol = ''
-style = 'yellow bold'
-detect_extensions = ['yml','yaml']
-format = '[$symbol]($style) '
-
-[os.symbols]
-Android = ""
-Arch = "󰣇"
-Debian = "󰣚"
-Fedora = ""
-Macos = ""
-NixOS = "󱄅"
-Pop = " "
-Raspbian = ""
-Ubuntu = "󰕈"
-Unknown = " "
-Windows = "󰖳"
+[custom.nu]
+symbol = ''
+when = '"/.dockerenv" | path exists | if $in {error make {msg: "not a docker container"}}'
+format = '[$symbol]($style)  '
+style = 'bold blue'
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
