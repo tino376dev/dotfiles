@@ -9,7 +9,7 @@ git clone --bare https://github.com/tino376dev/.dotfiles.git $HOME/.dotfiles
 git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout
 
 # install gui tools for workstation environment
-if [ ! -f /.dockerenv ]; then
+if [ -z $DISTTAG ]; then
 
     # install alacritty and tmux
     sudo dnf -y install alacritty tmux
