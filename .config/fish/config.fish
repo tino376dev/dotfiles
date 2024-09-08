@@ -1,6 +1,6 @@
 set -g fish_greeting
 set -x EDITOR micro
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 if status is-interactive
     alias ll='eza -lah'
     alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
