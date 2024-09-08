@@ -2,7 +2,7 @@
 sudo dnf -y install dnf-plugins-core fira-code-fonts
 sudo dnf -y copr enable awood/bat-extras
 sudo dnf -y copr enable atim/starship
-sudo dnf -y install bat bat-extras curl eza fd-find fish fzf git git-delta micro nu openssh-server python3-pip ripgrep starship wget which xclip zoxide
+sudo dnf -y install bat bat-extras curl eza fd-find fish fzf git git-delta micro nu ripgrep starship wget which xclip zoxide
 
 # setup dotfiles
 git clone --bare https://github.com/tino376dev/.dotfiles.git $HOME/.dotfiles
