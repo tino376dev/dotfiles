@@ -27,8 +27,10 @@ if [ -z $DISTTAG ]; then
     curl -f "https://zed.dev/install.sh" | sh
     
     # configure git
-    git config --global user.name (read -P "git config name: ")
-    git config --global user.email (read -P "git config name: ")
+    read -sp "git config name: "  name
+    git config --global user.name $name
+    read -sp "git config email: " email
+    git config --global user.email $email
 
 fi
 
