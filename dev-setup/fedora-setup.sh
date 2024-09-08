@@ -35,11 +35,9 @@ if [ -z $DISTTAG ]; then
 fi
 
 # fish plugins/themes
-# curl -sL "https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish" | fish -c source
-wget "https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish" -O "$HOME/.config/fish/functions/fisher.fish"
-fish -c fisher install jorgebucaran/fisher
+fish -c "curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source; and fisher install jorgebucaran/fisher;"
 fish -c fisher install PatrickF1/fzf.fish
-fish -c fisher install catppuccin/fish
+fish -c fisher install catppuccin/fish;
 
 # bat themes
 mkdir -p "$(bat --config-dir)/themes"
