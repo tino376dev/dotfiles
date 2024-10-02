@@ -4,8 +4,9 @@ import = [
 ]
 
 [shell]
-args = ["-l", "-c", "tmux attach; or tmux new-session -n ''"]
-program = "/usr/bin/fish"
+# args = ["-l", "-c", "tmux attach; or tmux new-session -n ''"]
+args = ["-c", "zellij attach reiderfo"]
+program = "/usr/bin/bash"
 
 [window]
 dynamic_title = true
