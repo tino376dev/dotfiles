@@ -3,12 +3,13 @@
 ## setup
 
 # directories
-TEMP_DIR=$(mktemp -d)
+TEMP_DIR=$(mktemp -du)
 TEMP_DIR="$HOME/dev-setup/test_bin"
 FISH_COMPLETIONS_DIR="$HOME/.config/fish/completions"
 LOCAL_BIN_DIR="$HOME/.local/bin"
 
 # create directories
+mkdir -p $TEMP_DIR
 mkdir -p $FISH_COMPLETIONS_DIR
 
 # get the latest release info from a github repo
@@ -62,6 +63,41 @@ curl -L $url | tar -xzf - -C $TEMP_DIR
 cp -f $TEMP_DIR/$folder/bat $LOCAL_BIN_DIR
 cp -f $TEMP_DIR/$folder/autocomplete/bat.fish $FISH_COMPLETIONS_DIR
 
+# bat-extras
+owner="eth-p"
+repo="bat-extras"
+latest=$(get_latest_release_info $owner $repo)
+file="bat-extras-$latest.zip"
+folder="bat-extras-$latest"
+url=$(get_download_url $owner $repo $latest $file | sed 's/bat-extras-v/bat-extras-/')
+release_urls $url $releases
+curl -L -o "$TEMP_DIR/$file" $url
+mkdir -p "$TEMP_DIR/$folder"
+unzip -qo -d "$TEMP_DIR/$folder" $TEMP_DIR/$file
+cp -f $TEMP_DIR/$folder/bin/* $LOCAL_BIN_DIR
+
+# delta
+owner="dandavison"
+repo="delta"
+latest=$(get_latest_release_info $owner $repo)
+file="delta-$latest-x86_64-unknown-linux-musl.tar.gz"
+folder=$(trim_file $file)
+url=$(get_download_url $owner $repo $latest $file)
+release_urls $url $releases
+curl -L $url | tar -xzf - -C $TEMP_DIR
+cp -f $TEMP_DIR/$folder/delta $LOCAL_BIN_DIR
+
+ # dust
+ owner="bootandy"
+ repo="dust"
+ latest=$(get_latest_release_info $owner $repo)
+ file="dust-$latest-x86_64-unknown-linux-musl.tar.gz"
+ folder=$(trim_file $file)
+ url=$(get_download_url $owner $repo $latest $file)
+ release_urls $url $releases
+ curl -L $url | tar -xzf - -C $TEMP_DIR
+ cp -f $TEMP_DIR/$folder/dust $LOCAL_BIN_DIR
+
 # eza
 owner="eza-community"
 repo="eza"
@@ -96,6 +132,17 @@ url=$(get_download_url $owner $repo $latest $file)
 release_urls $url $releases
 curl -L $url | tar -xJf - -C $TEMP_DIR
 cp -f $TEMP_DIR/fish* $LOCAL_BIN_DIR
+
+# fzf
+owner="junegunn"
+repo="fzf"
+latest=$(get_latest_release_info $owner $repo)
+file="fzf-$latest-linux_amd64.tar.gz"
+folder=$(trim_file $file)
+url=$(get_download_url $owner $repo $latest $file | sed 's/fzf-v/fzf-/')
+release_urls $url $releases
+curl -L $url | tar -xzf - -C $TEMP_DIR
+cp -f $TEMP_DIR/fzf $LOCAL_BIN_DIR
 
 # numbat
 owner="sharkdp"
@@ -144,6 +191,17 @@ curl -L $url | tar -xzf - -C $TEMP_DIR
 cp -f $TEMP_DIR/$folder/rg $LOCAL_BIN_DIR
 cp -f $TEMP_DIR/$folder/complete/rg.fish $FISH_COMPLETIONS_DIR
 
+# # skim
+# owner="skim-rs"
+# repo="skim"
+# latest=$(get_latest_release_info $owner $repo)
+# file="skim-x86_64-unknown-linux-musl.tgz"
+# folder=$(trim_file $file)
+# url=$(get_download_url $owner $repo $latest $file)
+# release_urls $url $releases
+# curl -L $url | tar -xzf - -C $TEMP_DIR
+# cp -f $TEMP_DIR/sk $LOCAL_BIN_DIR
+
 # starship
 owner="starship"
 repo="starship"
@@ -177,6 +235,8 @@ release_urls $url $releases
 curl -L $url | tar -xzf - -C $TEMP_DIR
 cp -f $TEMP_DIR/zoxide $LOCAL_BIN_DIR
 
-
 ## cleanup
-# rm -f $TEMP_DIR
+rm -rf $TEMP_DIR
+
+# fish plugin manager
+~/.local/bin/fish -c curl -L "https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"~/
