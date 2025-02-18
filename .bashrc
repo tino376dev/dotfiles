@@ -24,17 +24,29 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+# set up brew
+if [ -f /home/linuxbrew/.linuxbrew/bin/brew ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    export HOMEBREW_NO_ENV_HINTS=true
+fi
+
+if [ -x "$(command -v git)" ]; then
+    alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+fi
+
 if [ -f ~/.local/share/blesh/ble.sh ]; then
     source ~/.local/share/blesh/ble.sh
 fi
+
 if [ -x "$(command -v vivid)" ]; then
     export LS_COLORS="$(vivid generate catppuccin-mocha)"
 fi
+
 if [ -x "$(command -v starship)" ]; then
     export STARSHIP_CONFIG=~/.config/starship/starship.toml
     eval "$(starship init bash)"
 fi
+
 if [ -x "$(command -v micro)" ]; then
     export EDITOR=$(which micro)
     export VISUAL=$(which micro)
@@ -43,9 +55,11 @@ if [ -x "$(command -v micro)" ]; then
     # makes shortxcuts in micro work
     export TERM=xterm-256color
 fi
+
 if [ -x "$(command -v eza)" ]; then
     alias ll='eza -lah'
 fi
+
 if [ -x "$(command -v flatpak)" ]; then
     alias zed='flatpak run dev.zed.Zed'
     alias edge='flatpak run com.microsoft.Edge'

@@ -35,14 +35,45 @@ $env.PROMPT_COMMAND_RIGHT = $env.PROMPT_COMMAND_RIGHT? | default {||
     ([$last_exit_code, (char space), $time_segment] | str join)
 }
 
+if ("/home/linuxbrew/.linuxbrew/bin/brew" | path exists) {
+    use std "path add"
+    path add "/home/linuxbrew/.linuxbrew/bin"
+    $env.HOMEBREW_NO_ENV_HINTS = true
+}
+
+
 if ((which vivid | length) > 0) {
     $env.LS_COLORS = (vivid generate catppuccin-mocha)
 }
-if ((which starship | length) > 0) {
-    mkdir ~/.cache/starship
-    starship init nu | save -f ~/.cache/starship/init.nu
-}
+
 if ((which micro | length) > 0) {
     $env.EDITOR = which micro | get path.0
     $env.VISUAL = which micro | get path.0
+}
+
+vendor "zoxide" "init nushell"
+vendor "starship" "init nu"
+
+def vendor [
+    binary: string
+    init: string
+] {
+    let folder = $nu.data-dir | path join "vendor/autoload/"
+    let file = $folder | path join $"($binary).nu"
+    if (which $binary | length) == 0 {
+        if ($file | path exists) {rm $file}
+        return
+        }
+    if ($file | path exists) {return}
+    nu -c $"($binary) ($init) | save -f ($file)"
+}
+
+def --env y [...args] {
+	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+	yazi ...$args --cwd-file $tmp
+	let cwd = (open $tmp)
+	if $cwd != "" and $cwd != $env.PWD {
+		cd $cwd
+	}
+	rm -fp $tmp
 }

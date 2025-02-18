@@ -7,7 +7,17 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "autosave": "on_focus_change",
+  "auto_update_extensions": {
+    "ruff": true
+  },
+  "assistant": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    },
+    "version": "2"
+  },
+  "autosave": "on_window_change",
   "buffer_font_family": "FiraMono Nerd Font",
   "buffer_font_size": 16,
   "extend_comment_on_newline": false,
@@ -15,6 +25,7 @@
   "languages": {
     "Python": {
       "format_on_save": "on",
+      "language_servers": ["ruff"],
       "formatter": [
         {
           "code_actions": {
@@ -37,6 +48,20 @@
           "lineLength": 80,
           "lint": {
             "extendSelect": ["I"]
+          }
+        }
+      }
+    },
+    "yaml-language-server": {
+      "settings": {
+        "yaml": {
+          "keyOrdering": false,
+          "format": {
+            "singleQuote": true
+          },
+          "schemas": {
+            "url": "globPattern",
+            "Kubernetes": "globPattern"
           }
         }
       }
@@ -69,14 +94,15 @@
     "copy_on_select": true,
     "detect_venv": {
       "on": {
+        "directories": [".venv"],
         "activate_script": "fish"
       }
     },
     "env": {},
     "option_as_meta": false,
-    "shell": {
-      "program": "/usr/bin/fish"
-    },
+    // "shell": {
+    //   "program": "/usr/bin/fish"
+    // },
     "toolbar": {
       "title": true
     },

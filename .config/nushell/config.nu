@@ -69,6 +69,8 @@ $env.config.color_config = {
 
 $env.config.show_banner = false
 
+source ~/.config/nushell/themes/catppuccin_mocha.nu
+
 if ((which starship | length) > 0) {
     use ~/.cache/starship/init.nu
 }

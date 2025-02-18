@@ -19,7 +19,7 @@ $shell
 """
 
 [character]
-success_symbol = '[❯](bold green) '
+success_symbol = '[❯](bold green)'
 error_symbol = '[❯](bold red) '
 
 [container]
@@ -37,22 +37,22 @@ style = 'yellow'
 
 [git_branch]
 symbol = ''
-format = '[[\(](white)$branch(:$remote_branch)[|](white)]($style)'
+format = '[[\(](white)$branch(:$remote_branch)]($style)'
 style = 'pink'
 
 [git_status]
 format = '[$all_status$ahead_behind[\)](white)]($style) '
-conflicted = '='
-ahead = '$count⇡'
-behind = '$count⇣'
-diverged = '⇕'
-up_to_date = '[✓](green)'
+conflicted = '[|](white)='
+ahead = '[|](white)$count⇡'
+behind = '[|](white)$count⇣'
+diverged = '[|](white)⇕'
+up_to_date = '[|](white)[✓](green)'
 untracked = ''
-stashed = '$'
-modified = "!"
-staged = "+"
-renamed = "[»](yellow)"
-deleted = "[✗](red)"
+stashed = '[|](white)$'
+modified = "[|](white)$count!"
+staged = "[|](white)$count+"
+renamed = "[|](white)[$count»](yellow)"
+deleted = "[|](white)[$count✗](red)"
 typechanged = ""
 style = 'blue'
 
@@ -64,8 +64,11 @@ disabled = false
 
 [kubernetes]
 symbol = '󱃾  '
-format = '[$symbol$context( \($namespace\))]($style) '
-disabled = true
+style = 'bold blue'
+format = '''
+[$symbol$context( \($namespace\))]($style)
+'''
+disabled = false
 
 [python]
 format = '[(\($virtualenv\) )]($style)'
