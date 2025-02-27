@@ -5,7 +5,7 @@ if test -e /home/linuxbrew/.linuxbrew/Homebrew/bin/brew
 end
 if status is-interactive
 
-    alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+    alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
     alias clc='clear'
 
     if command -q kubectl
@@ -20,8 +20,8 @@ if status is-interactive
 
     # editor
     if command -q micro
-        set -x EDITOR (which hx)
-        set -x VISUAL (which hx)
+        set -x EDITOR (which micro)
+        set -x VISUAL (which micro)
     end
 
     # eza
