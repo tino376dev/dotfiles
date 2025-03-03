@@ -59,6 +59,7 @@ def vendor [
     init: string
 ] {
     let folder = $nu.data-dir | path join "vendor/autoload/"
+    mkdir $folder
     let file = $folder | path join $"($binary).nu"
     if (which $binary | length) == 0 {
         if ($file | path exists) {rm $file}

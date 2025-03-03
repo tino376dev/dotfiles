@@ -69,13 +69,7 @@ $env.config.color_config = {
 
 $env.config.show_banner = false
 
-source ~/.config/nushell/themes/catppuccin_mocha.nu
-
-if ((which starship | length) > 0) {
-    use ~/.cache/starship/init.nu
-}
-
-alias dotfiles = /usr/bin/git --git-dir=($env.HOME)/.dotfiles/ --work-tree=($env.HOME)
+alias dotfiles = /usr/bin/git --git-dir=($env.HOME)/dotfiles/ --work-tree=($env.HOME)
 alias ll = ls -la
 alias zed = flatpak run dev.zed.Zed
 alias edge = flatpak run com.microsoft.Edge
