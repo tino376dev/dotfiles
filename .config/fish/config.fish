@@ -3,6 +3,7 @@ if test -e /home/linuxbrew/.linuxbrew/Homebrew/bin/brew
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     set -x HOMEBREW_NO_ENV_HINTS true
 end
+set -gx PATH $HOME/.local/bin $PATH
 if status is-interactive
 
     alias dotfiles='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
