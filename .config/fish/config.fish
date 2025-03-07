@@ -17,6 +17,8 @@ if status is-interactive
         alias zed='flatpak run dev.zed.Zed'
         alias edge='flatpak run com.microsoft.Edge'
         alias zen='flatpak run io.github.zen_browser.zen'
+        alias vpn='set COOKIE $(openfortivpn-webview vpn.belimo.ch:443) ;and echo $COOKIE | sudo openfortivpn --set-dns=1 --use-resolvconf=1 --cookie-on-stdin vpn.belimo.ch:443'
+        alias windows='flatpak run org.remmina.Remmina -c ~/.config/remmina/connections/windows.remmina'
     end
 
     # editor

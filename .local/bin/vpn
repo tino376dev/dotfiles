@@ -1,3 +1,0 @@
-#!/bin/bash
-COOKIE=$(openfortivpn-webview vpn.belimo.ch:443)
-echo $COOKIE | sudo openfortivpn --set-dns=1 --use-resolvconf=1 --cookie-on-stdin vpn.belimo.ch:443
