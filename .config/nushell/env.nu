@@ -14,6 +14,7 @@ if ("/home/linuxbrew/.linuxbrew/bin/brew" | path exists) {
 if (which vivid | length) > 0 {
     $env.LS_COLORS = (vivid generate catppuccin-mocha)
 }
+source ($nu.user-autoload-dirs | path join "theme.nu")
 
 # editor
 if (which micro | length) > 0 {
@@ -32,8 +33,7 @@ def vendor [
     binary: string
     init: string
 ] {
-    let folder = $nu.data-dir | path join "vendor/autoload/"
-    let folder = $env.HOME | path join ".config" | path join "nushell" | path join "autoload"
+    let folder = $nu.user-autoload-dirs | get 0
     mkdir $folder
     let file = $folder | path join $"($binary).nu"
     if ($file | path exists) {return}
