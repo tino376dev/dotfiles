@@ -1,0 +1,20 @@
+{
+    0: (
+        name: "fish",
+        command: "/var/home/linuxbrew/.linuxbrew/bin/fish -i",
+        syntax_theme_dark: "Catppuccin Mocha",
+        syntax_theme_light: "COSMIC Light",
+        tab_title: "",
+        working_directory: "",
+        hold: false,
+    ),
+    1: (
+        name: "nu",
+        command: "/var/home/linuxbrew/.linuxbrew/bin/nu -i",
+        syntax_theme_dark: "Catppuccin Mocha",
+        syntax_theme_light: "COSMIC Light",
+        tab_title: "",
+        working_directory: "",
+        hold: false,
+    ),
+}
