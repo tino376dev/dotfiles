@@ -2,30 +2,44 @@
 # These "sensible defaults" are set before the user's `env.nu` is loaded
 #
 # version = "0.101.0"
+use std "path add"
 
 # set up brew
-if ("/home/linuxbrew/.linuxbrew/bin/brew" | path exists) {
-    use std "path add"
-    path add "/home/linuxbrew/.linuxbrew/bin"
+let path = $env.HOME | path dirname | path join "linuxbrew" | path join ".linuxbrew" | path join "bin"
+if ($path | path exists) {
+    path add $path
     $env.HOMEBREW_NO_ENV_HINTS = true
 }
 
+# set up cargo
+let path = $env.HOME | path dirname | path join "cargo" | path join ".cargo" | path join "bin"
+if ($path | path exists) {
+    path add $path
+}
+
+# set up path
+let path = $env.HOME | path join ".local" | path join "bin"
+if ($path | path exists) {
+    path add $path
+}
+
 # theming
-if (which vivid | length) > 0 {
+if ("vivid" | exists) {
     $env.LS_COLORS = (vivid generate catppuccin-mocha)
 }
 source ($nu.user-autoload-dirs | path join "theme.nu")
 
 # editor
-if (which micro | length) > 0 {
+if ("micro" | exists) {
     $env.EDITOR = which micro | get path.0
     $env.VISUAL = which micro | get path.0
 }
 
 # utils
-if (which starship | length) > 0 {
+if ("starship" | exists) {
     $env.STARSHIP_CONFIG = $env.HOME | path join ".config" | path join "starship" | path join "starship.toml" 
 }
+
 vendor "zoxide" "init nushell"
 vendor "starship" "init nu"
 
@@ -33,6 +47,7 @@ def vendor [
     binary: string
     init: string
 ] {
+    if (not ($binary | exists)) {return}
     let folder = $nu.user-autoload-dirs | get 0
     mkdir $folder
     let file = $folder | path join $"($binary).nu"
@@ -73,3 +88,5 @@ $env.config.hooks.display_output = {
     }}
     | if (term size).columns >= 100 { table -e } else { table }
 }
+
+def exists [] {command -v $in | is-not-empty}
