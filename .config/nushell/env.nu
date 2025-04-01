@@ -4,30 +4,26 @@
 # version = "0.101.0"
 use std "path add"
 
+def exists [] {which $in | is-not-empty}
+
 # set up brew
-let path = $env.HOME | path dirname | path join "linuxbrew" | path join ".linuxbrew" | path join "bin"
-if ($path | path exists) {
-    path add $path
-    $env.HOMEBREW_NO_ENV_HINTS = true
-}
+let path = $env.HOME | path dirname | path join "linuxbrew" ".linuxbrew" "bin"
+if ($path | path exists) {path add $path; $env.HOMEBREW_NO_ENV_HINTS = true}
 
 # set up cargo
-let path = $env.HOME | path dirname | path join "cargo" | path join ".cargo" | path join "bin"
-if ($path | path exists) {
-    path add $path
-}
+let path = $env.HOME | path dirname | path join "cargo" ".cargo" "bin"
+if ($path | path exists) {path add $path}
 
 # set up path
-let path = $env.HOME | path join ".local" | path join "bin"
-if ($path | path exists) {
-    path add $path
-}
+let path = $env.HOME | path join ".local" "bin"
+if ($path | path exists) {path add $path}
+
+# scipts
+let path = $nu.config-path | path dirname | path join "modules"
+if ($path | path exists) {path add $path}
 
 # theming
-if ("vivid" | exists) {
-    $env.LS_COLORS = (vivid generate catppuccin-mocha)
-}
-source ($nu.user-autoload-dirs | path join "theme.nu")
+if ("vivid" | exists) {$env.LS_COLORS = (vivid generate catppuccin-mocha)}
 
 # editor
 if ("micro" | exists) {
@@ -40,21 +36,11 @@ if ("starship" | exists) {
     $env.STARSHIP_CONFIG = $env.HOME | path join ".config" | path join "starship" | path join "starship.toml" 
 }
 
-vendor "zoxide" "init nushell"
-vendor "starship" "init nu"
-
-def vendor [
-    binary: string
-    init: string
-] {
-    if (not ($binary | exists)) {return}
-    let folder = $nu.user-autoload-dirs | get 0
-    mkdir $folder
-    let file = $folder | path join $"($binary).nu"
-    if ($file | path exists) {return}
-    let cmd = $"($binary) ($init) | save -f ($file)"
-    $cmd | print
-    nu -c $cmd
+# topiary formatting
+if ("topiary" | exists) {
+    # Set environment variables according to the path of the clone
+    $env.TOPIARY_CONFIG_FILE = ($env.HOME | path join "repos" "topiary" "languages.ncl")
+    $env.TOPIARY_LANGUAGE_DIR = ($env.HOME | path join "repos" "topiary" "languages")
 }
 
 def --env y [...args] {
@@ -67,8 +53,7 @@ def --env y [...args] {
 	rm -fp $tmp
 }
 
-
-# # colorize string
+# colorize string
 let mime_to_lang = {
     application/json: json,
     application/xml: xml,
@@ -89,4 +74,15 @@ $env.config.hooks.display_output = {
     | if (term size).columns >= 100 { table -e } else { table }
 }
 
-def exists [] {command -v $in | is-not-empty}
+def vendor [
+    binary: string
+    init: string
+] {
+    if (not ($binary | exists)) {return}
+    let file = $nu.vendor-autoload-dirs | last | path join $"($binary).nu"
+    # let file = $nu.user-autoload-dirs | last | path join $"($binary).nu"
+    if (not ($file | path exists)) {nu -c $"($binary) ($init) | save -f ($file)"}
+}
+
+vendor "zoxide" "init nushell"
+vendor "starship" "init nu"
