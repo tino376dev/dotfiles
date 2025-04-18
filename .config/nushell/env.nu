@@ -63,15 +63,16 @@ let mime_to_lang = {
     text/x-toml: toml,
     text/markdown: markdown,
 }
-
-$env.config.hooks.display_output = {
-    metadata access {|meta| match $meta.content_type? {
-        null => {}
-        "application/x-nuscript" | "application/x-nuon" | "text/x-nushell" => { nu-highlight },
-        $mimetype if $mimetype in $mime_to_lang => { ^bat -Ppf --language=($mime_to_lang | get $mimetype) },
-        _ => {},
-    }}
-    | if (term size).columns >= 100 { table -e } else { table }
+if (which bat | is-not-empty) {
+    $env.config.hooks.display_output = {
+        metadata access {|meta| match $meta.content_type? {
+            null => {}
+            "application/x-nuscript" | "application/x-nuon" | "text/x-nushell" => { nu-highlight },
+            $mimetype if $mimetype in $mime_to_lang => { ^bat -Ppf --language=($mime_to_lang | get $mimetype) },
+            _ => {},
+        }}
+        | if (term size).columns >= 100 { table -e } else { table }
+    }
 }
 
 def vendor [
