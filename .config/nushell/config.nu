@@ -89,5 +89,5 @@ $env.config.completions.algorithm = "fuzzy"
 $env.config.completions.external.enable = true
 # $env.config.completions.external.completer = $external_completer
 
-const file = $nu.default-config-dir | path join "theme.nu"
+const file = $nu.default-config-dir | path join "themes" "catppuccin_mocha.nu"
 if ($file | path exists) {source $file}

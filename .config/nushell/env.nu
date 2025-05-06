@@ -22,10 +22,12 @@ let path = $env.HOME | path join ".local" "bin"
 if ($path | path exists) {path add $path}
 
 # scipts
-let path = $nu.config-path | path dirname | path join "modules"
+let path = $nu.default-config-dir | path join "modules"
 if ($path | path exists) {path add $path}
 
 # theming
+let path = $nu.default-config-dir | path join "themes"
+if ($path | path exists) {path add $path}
 if ("vivid" | exists) {$env.LS_COLORS = (vivid generate catppuccin-mocha)}
 
 # editor
@@ -36,7 +38,7 @@ if ("micro" | exists) {
 
 # utils
 if ("starship" | exists) {
-    $env.STARSHIP_CONFIG = $env.HOME | path join ".config" | path join "starship" | path join "starship.toml" 
+    $env.STARSHIP_CONFIG = $env.HOME | path join ".config" | path join "starship" | path join "starship.toml"
 }
 
 if ("carapace" | exists) {
@@ -95,7 +97,3 @@ def vendor [
 vendor "zoxide" "init nushell"
 vendor "starship" "init nu"
 vendor "carapace" "_carapace nushell"
-
-
-
-

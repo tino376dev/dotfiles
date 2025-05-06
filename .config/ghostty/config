@@ -48,7 +48,8 @@ command = /var/home/linuxbrew/.linuxbrew/bin/nu --interactive
 
 # theme
 window-decoration = none
-theme = "catppuccin-mocha.conf"
+window-theme = system
+theme = dark:catppuccin-mocha,light:catppuccin-latte
 
 #font
 font-family = "Noto Sans Mono"
