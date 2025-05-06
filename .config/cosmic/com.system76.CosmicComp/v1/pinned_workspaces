@@ -1,0 +1,58 @@
+[
+    (
+        output: (
+            name: "DP-9",
+            edid: Some((
+                manufacturer: ('H', 'P', 'N'),
+                product: 13973,
+                serial: None,
+                manufacture_week: 29,
+                manufacture_year: 2023,
+                model_year: None,
+            )),
+        ),
+        tiling_enabled: true,
+    ),
+    (
+        output: (
+            name: "DP-9",
+            edid: Some((
+                manufacturer: ('H', 'P', 'N'),
+                product: 13973,
+                serial: None,
+                manufacture_week: 29,
+                manufacture_year: 2023,
+                model_year: None,
+            )),
+        ),
+        tiling_enabled: true,
+    ),
+    (
+        output: (
+            name: "DP-9",
+            edid: Some((
+                manufacturer: ('H', 'P', 'N'),
+                product: 13973,
+                serial: None,
+                manufacture_week: 29,
+                manufacture_year: 2023,
+                model_year: None,
+            )),
+        ),
+        tiling_enabled: true,
+    ),
+    (
+        output: (
+            name: "DP-9",
+            edid: Some((
+                manufacturer: ('H', 'P', 'N'),
+                product: 13973,
+                serial: None,
+                manufacture_week: 29,
+                manufacture_year: 2023,
+                model_year: None,
+            )),
+        ),
+        tiling_enabled: true,
+    ),
+]
