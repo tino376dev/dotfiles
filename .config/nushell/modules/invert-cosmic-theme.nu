@@ -10,8 +10,7 @@ let themes = $root | path join "bat" "themes"
 let config = $root | path join "bat" "config"
 let url = $"https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin ($flavor | str pascal-case).tmTheme"
 $themes | fetch $url
-bat cache --build
-open $config --raw | str replace '^--theme=.*$' $'--theme="Catppuccin ($flavor | str pascal-case)"' --regex --multiline | save -f $config
+$env.BAT_THEME = $"Catppuccin ($flavor | str pascal-case)"
 
 # micro
 let themes = $root | path join "micro" "colorschemes"
@@ -19,6 +18,10 @@ let config = $root | path join "micro" "settings.json"
 let url = $"https://raw.githubusercontent.com/catppuccin/micro/main/src/catppuccin-($flavor).micro"
 $themes | fetch $url
 open $config | update "colorscheme" $"catppuccin-($flavor)" | save -f $config
+
+# helix
+let config = $root | path join "helix" "config.toml"
+open $config | update "theme" $"catppuccin_($flavor)" | save -f $config
 
 # yazi
 let themes = $root | path join "yazi" "themes"

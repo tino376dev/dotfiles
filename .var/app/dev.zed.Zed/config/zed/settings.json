@@ -119,6 +119,10 @@
     },
     "working_directory": "current_project_directory"
   },
-  "theme": "Catppuccin Mocha",
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
   "ui_font_size": 16
 }
