@@ -7,6 +7,14 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "edit_predictions": {
+    "mode": "eager",
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null
+    },
+    "enabled_in_assistant": false
+  },
   "auto_update_extensions": {
     "ruff": true
   },
@@ -23,6 +31,9 @@
   "extend_comment_on_newline": false,
   "format_on_save": "on",
   "languages": {
+    "Markdown": {
+      "format_on_save": "off"
+    },
     "Python": {
       "format_on_save": "on",
       "language_servers": ["ruff"],
@@ -108,6 +119,6 @@
     },
     "working_directory": "current_project_directory"
   },
-  "theme": "Catppuccin Mocha (Blur)",
+  "theme": "Catppuccin Mocha",
   "ui_font_size": 16
 }

@@ -1,4 +1,4 @@
-# palette = "catppuccin_latte"
+# palette = "catppuccin_mocha"
 palette = "catppuccin_mocha"
 
 add_newline = false
@@ -33,7 +33,7 @@ format = '[$path]($style)[$read_only]($read_only_style) '
 truncation_length = 3
 truncate_to_repo = true
 fish_style_pwd_dir_length = 1
-style = 'yellow'
+style = 'flamingo'
 
 [git_branch]
 symbol = ''
@@ -73,6 +73,21 @@ disabled = false
 [python]
 format = '[(\($virtualenv\) )]($style)'
 style = 'bold purple'
+
+[shell]
+bash_indicator = "bash"
+fish_indicator = "fish"
+nu_indicator = "nu"
+format = '[$indicator]($style)'
+style = 'green'
+disabled = false
+
+[username]
+style_user = 'green'
+style_root = 'red'
+format = '[$user]($style)'
+disabled = false
+show_always = true
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
@@ -129,18 +144,3 @@ surface0 = "#ccd0da"
 base = "#eff1f5"
 mantle = "#e6e9ef"
 crust = "#dce0e8"
-
-[shell]
-bash_indicator = "bash"
-fish_indicator = "fish"
-nu_indicator = "nu"
-format = '[$indicator]($style)'
-style = 'green'
-disabled = false
-
-[username]
-style_user = 'green'
-style_root = 'red'
-format = '[$user]($style)'
-disabled = false
-show_always = true

@@ -8,7 +8,10 @@ def exists [] {which $in | is-not-empty}
 
 # set up brew
 let path = $env.HOME | path dirname | path join "linuxbrew" ".linuxbrew" "bin"
-if ($path | path exists) {path add $path; $env.HOMEBREW_NO_ENV_HINTS = true}
+if ($path | path exists) {
+    path add $path
+    $env.HOMEBREW_NO_ENV_HINTS = true
+}
 
 # set up cargo
 let path = $env.HOME | path dirname | path join "cargo" ".cargo" "bin"
@@ -34,6 +37,10 @@ if ("micro" | exists) {
 # utils
 if ("starship" | exists) {
     $env.STARSHIP_CONFIG = $env.HOME | path join ".config" | path join "starship" | path join "starship.toml" 
+}
+
+if ("carapace" | exists) {
+    $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 }
 
 # topiary formatting
@@ -87,3 +94,8 @@ def vendor [
 
 vendor "zoxide" "init nushell"
 vendor "starship" "init nu"
+vendor "carapace" "_carapace nushell"
+
+
+
+
