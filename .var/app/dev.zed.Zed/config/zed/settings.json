@@ -7,27 +7,27 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "edit_predictions": {
-    "mode": "eager",
-    "copilot": {
-      "proxy": null,
-      "proxy_no_verify": null
+  "assistant": {
+    "default_model": {
+      "model": "gpt-4o",
+      "provider": "copilot_chat"
     },
-    "enabled_in_assistant": false
+    "version": "2"
   },
   "auto_update_extensions": {
     "ruff": true
   },
-  "assistant": {
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-4o"
-    },
-    "version": "2"
-  },
   "autosave": "on_window_change",
   "buffer_font_family": "FiraMono Nerd Font",
   "buffer_font_size": 16,
+  "edit_predictions": {
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null
+    },
+    "enabled_in_assistant": false,
+    "mode": "eager"
+  },
   "extend_comment_on_newline": false,
   "format_on_save": "on",
   "languages": {
@@ -36,12 +36,11 @@
     },
     "Python": {
       "format_on_save": "on",
-      "language_servers": ["ruff"],
       "formatter": [
         {
           "code_actions": {
-            "source.organizeImports.ruff": true,
-            "source.fixAll.ruff": true
+            "source.fixAll.ruff": true,
+            "source.organizeImports.ruff": true
           }
         },
         {
@@ -49,6 +48,9 @@
             "name": "ruff"
           }
         }
+      ],
+      "language_servers": [
+        "ruff"
       ]
     }
   },
@@ -58,7 +60,9 @@
         "settings": {
           "lineLength": 80,
           "lint": {
-            "extendSelect": ["I"]
+            "extendSelect": [
+              "I"
+            ]
           }
         }
       }
@@ -66,13 +70,13 @@
     "yaml-language-server": {
       "settings": {
         "yaml": {
-          "keyOrdering": false,
           "format": {
             "singleQuote": true
           },
+          "keyOrdering": false,
           "schemas": {
-            "url": "globPattern",
-            "Kubernetes": "globPattern"
+            "Kubernetes": "globPattern",
+            "url": "globPattern"
           }
         }
       }
@@ -105,8 +109,10 @@
     "copy_on_select": true,
     "detect_venv": {
       "on": {
-        "directories": [".venv"],
-        "activate_script": "fish"
+        "activate_script": "fish",
+        "directories": [
+          ".venv"
+        ]
       }
     },
     "env": {},
@@ -120,9 +126,9 @@
     "working_directory": "current_project_directory"
   },
   "theme": {
-    "mode": "system",
+    "dark": "Catppuccin Mocha",
     "light": "Catppuccin Latte",
-    "dark": "Catppuccin Mocha"
+    "mode": "system"
   },
   "ui_font_size": 16
 }
