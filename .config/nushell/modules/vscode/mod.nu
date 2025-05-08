@@ -8,7 +8,7 @@ export def serve [
     --port: int = 8080 # host port
     --expose = false # expose using ngrok
 ] {
-    let host_work = $in
+    let host_work = $in | path expand
     let host_code_config = $env.XDG_DATA_HOME | path join "vscode"
     let host_code_server_config = $env.XDG_DATA_HOME | path join "vscode-server"
     let host_nu_config = $env.XDG_CONFIG_HOME | path join "nushell"

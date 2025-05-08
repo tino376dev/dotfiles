@@ -1,7 +1,8 @@
 # Nushell Config File
 #
 # version = "0.101.0"
-$env.config.show_banner = false
+overlay use -rp vscode
+overlay use -rp dark-mode
 
 alias dotfiles = /usr/bin/git --git-dir=($env.HOME)/dotfiles/ --work-tree=($env.HOME)
 alias ll = ls -la

@@ -2,66 +2,6 @@
     (
         modifiers: [
             Super,
-            Alt,
-            Shift,
-        ],
-        key: "l",
-    ): Move(Right),
-    (
-        modifiers: [
-            Super,
-            Alt,
-            Shift,
-        ],
-        key: "Right",
-    ): Move(Right),
-    (
-        modifiers: [
-            Super,
-            Alt,
-            Shift,
-        ],
-        key: "h",
-    ): Move(Left),
-    (
-        modifiers: [
-            Super,
-            Alt,
-            Shift,
-        ],
-        key: "Left",
-    ): Move(Left),
-    (
-        modifiers: [
-            Super,
         ],
     ): System(Launcher),
-    (
-        modifiers: [
-            Super,
-            Shift,
-        ],
-        key: "h",
-    ): MoveToOutput(Left),
-    (
-        modifiers: [
-            Super,
-            Shift,
-        ],
-        key: "Left",
-    ): MoveToOutput(Left),
-    (
-        modifiers: [
-            Super,
-            Shift,
-        ],
-        key: "l",
-    ): MoveToOutput(Right),
-    (
-        modifiers: [
-            Super,
-            Shift,
-        ],
-        key: "Right",
-    ): MoveToOutput(Right),
 }

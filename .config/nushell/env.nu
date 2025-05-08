@@ -6,6 +6,8 @@ use std "path add"
 
 def exists [] {which $in | is-not-empty}
 
+$env.config.show_banner = false
+
 # set up brew
 let path = $env.HOME | path dirname | path join "linuxbrew" ".linuxbrew" "bin"
 if ($path | path exists) {
