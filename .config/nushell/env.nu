@@ -22,8 +22,7 @@ let path = $env.HOME | path join ".local" "bin"
 if ($path | path exists) {path add $path}
 
 # scipts
-let path = $nu.default-config-dir | path join "modules"
-if ($path | path exists) {path add $path}
+$env.NU_LIB_DIRS = ($env.NU_LIB_DIRS | append ($nu.default-config-dir | path join "modules"))
 
 # theming
 let path = $nu.default-config-dir | path join "themes"
@@ -43,13 +42,6 @@ if ("starship" | exists) {
 
 if ("carapace" | exists) {
     $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
-}
-
-# topiary formatting
-if ("topiary" | exists) {
-    # Set environment variables according to the path of the clone
-    $env.TOPIARY_CONFIG_FILE = ($env.HOME | path join "repos" "topiary" "languages.ncl")
-    $env.TOPIARY_LANGUAGE_DIR = ($env.HOME | path join "repos" "topiary" "languages")
 }
 
 def --env y [...args] {
